@@ -12,7 +12,7 @@
 
 NAME		= so_long
 NAME_DBG	= dbg
-SRC			= \
+SRC			= so_long.c\
 
 OBJS		= $(SRC:%.c=%.o)
 INCLUDE		= so_long.h
