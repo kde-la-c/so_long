@@ -13,7 +13,8 @@
 NAME		= so_long
 NAME_DBG	= dbg
 SRC			= so_long.c\
-
+			check_map.c\
+			output.c
 OBJS		= $(SRC:%.c=%.o)
 INCLUDE		= so_long.h
 CC			= gcc
@@ -62,4 +63,4 @@ fclean:		clean
 
 re:			fclean all
 
-.PHONY:		all clean fclean re debug
+.PHONY:		all clean fclean re debug m l
