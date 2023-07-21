@@ -14,15 +14,19 @@
 
 int	main(int argc, char **argv)
 {
+	t_count	c;
+	t_args	args;
 	char	**map;
-	char	*path;
 
-	map = NULL;
-	if (argc != 2)
-		print_error("Invalid number of arguments");
-	path = argv[1];
-	if (ft_strncmp(&path[ft_strlen(path) - 4], ".ber", 5))
-		print_error("Invalid map name");
-	check_map(open(argv[1], O_RDONLY), &map);
+	c.i = 0;
+	args.argc = argc;
+	args.argv = argv;
+	map = read_args(args);
+	check_map(map);
+	while (map[c.i])
+	{
+		ft_printf("%i: %s", c.i, map[c.i]);
+		c.i++;
+	}
 	return (0);
 }

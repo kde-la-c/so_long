@@ -30,10 +30,13 @@ typedef struct	s_data {
 	int		endian;
 }				t_data;
 
-// map checking
-int		check_map(int fd, char ***map);
+// input handling
+char	**read_args(t_args args);
 
-// output
-void	print_error(char *err);
+// map checking
+void	check_map(char **map);
+
+// output handling
+int		print_error(char *err);
 
 #endif

@@ -13,8 +13,10 @@
 NAME		= so_long
 NAME_DBG	= dbg
 SRC			= so_long.c\
-			check_map.c\
-			output.c
+			input.c\
+			output.c\
+			check_map.c
+
 OBJS		= $(SRC:%.c=%.o)
 INCLUDE		= so_long.h
 CC			= gcc
