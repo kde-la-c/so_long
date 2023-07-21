@@ -25,7 +25,7 @@ int	main(int argc, char **argv)
 	check_map(map);
 	while (map[c.i])
 	{
-		ft_printf("%i: %s", c.i, map[c.i]);
+		ft_printf("%s", map[c.i]);
 		c.i++;
 	}
 	return (0);

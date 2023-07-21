@@ -12,14 +12,31 @@
 
 #include "so_long.h"
 
-/* void	check_path(char **map)
+/* void	find_path(char **map)
 {
+	t_count	c;
 
-}
+	c.i = 0;
+	c.j = 0;
 
-void	check_walls(char **map)
+} */
+
+/* int	check_walls(char **map, long len)
 {
-	
+	t_count	c;
+	long	*pos;
+
+	c.i = 0;
+	c.j = 0;
+	c.k = 0;
+	pos = (long *)ft_calloc(len + 1, sizeof(long));
+	while (map[c.i])
+	{
+		while (map[c.i][c.j])
+			if (map[c.i][c.j] == '1')
+				pos[c.k++] = c.j;
+		
+	}
 } */
 
 void	check_map(char **map)
@@ -28,21 +45,25 @@ void	check_map(char **map)
 
 	(!map[0]) && print_error("Invalid map");
 	c.i = 0;
-	c.j = ft_strlen(map[0]);
 	c.k = 0;
 	c.l = 0;
 	c.m = 0;
 	while (map[++c.i])
 	{
-		if (ft_strlen(map[c.i]) != (size_t)c.j)
-			print_error("Invalid map");
-		if (ft_strchr(map[c.i], 'P'))
-			c.k++;
-		if (ft_strchr(map[c.i], 'E'))
-			c.l++;
-		if (ft_strchr(map[c.i], 'C'))
-			c.m++;
+		c.j = ft_strlen(map[0]);
+		(ft_strlen(map[c.i]) != (size_t)c.j) && print_error("Invalid map");
+		c.j = 0;
+		while (map[c.i][c.j] != '\n')
+		{
+			if (map[c.i][c.j] == 'P')
+				c.k++;
+			else if (map[c.i][c.j] == 'E')
+				c.l++;
+			else if (map[c.i][c.j] == 'C')
+				c.m++;
+			c.j++;
+		}
 	}
-	if (c.i < 3 || c.k != 1 || c.l != 1 || !c.m)
+	if (c.i < 3 || c.k != 1 || c.l != 1 || !c.m /* || check_walls(map, c.j) */)
 		print_error("Invalid map");
 }
