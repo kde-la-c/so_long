@@ -1,15 +1,18 @@
-#include "so_long.h"
+#include <stdio.h>
+#include <stdlib.h>
+// #include <string.h>
 
-int main()
-{
-	// int i = 5;
-	int fd = open("main.c", O_RDONLY);
-	if (fd != -1)
-		printf("lines :%i\n", ft_countlines(fd));
-	close(fd);
-	fd = open("main.c", O_RDONLY);
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	return (0);
+void leaks() {
+	system("leaks ye");
+}
+
+void f() {
+	char *str = strdup("asda~");
+	printf("%s\n", str);
+}
+
+int main() {
+	atexit(leaks);
+	f();
+	exit(1);
 }

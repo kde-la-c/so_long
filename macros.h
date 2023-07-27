@@ -1,32 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   macros.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kde-la-c <kde-la-c@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/09 17:08:42 by kde-la-c          #+#    #+#             */
-/*   Updated: 2023/07/09 17:08:45 by kde-la-c         ###   ########.fr       */
+/*   Created: 2023/07/27 13:32:37 by kde-la-c          #+#    #+#             */
+/*   Updated: 2023/07/27 13:32:44 by kde-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#ifndef MACROS_H
+# define MACROS_H
 
-int	main(int argc, char **argv)
-{
-	t_count	c;
-	t_args	args;
-	t_map	map;
+# define CHAR_SET	"01CEP\n"
+# define WALL		'1'
+# define SPACE		'0'
+# define PLAYER		'P'
+# define COLLEC		'C'
+# define EXIT		'E'
 
-	c.i = 0;
-	args.argc = argc;
-	args.argv = argv;
-	map = read_args(args);
-	check_map(&map);
-	while (map.map[c.i])
-	{
-		ft_printf("%s", map.map[c.i]);
-		c.i++;
-	}
-	return (0);
-}
+#endif

@@ -16,9 +16,9 @@ SRC			= so_long.c\
 			input.c\
 			output.c\
 			check_map.c
-
 OBJS		= $(SRC:%.c=%.o)
-INCLUDE		= so_long.h
+INCLUDE		= so_long.h\
+			macros.h
 CC			= gcc
 CFLAGS		= -Wall -Wextra -Werror
 MLFLAGS		= -lmlx -framework OpenGL -framework AppKit

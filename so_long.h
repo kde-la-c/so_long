@@ -20,21 +20,43 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
-# include "libft/libft.h"
 
-typedef struct	s_data {
+# include "libft/libft.h"
+# include "macros.h"
+
+typedef struct s_data {
 	void	*img;
 	char	*addr;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
-}				t_data;
+}	t_data;
+
+typedef struct s_map
+{
+	char	**map;
+	char	**tmpmap;
+	t_cords	player;
+	t_cords	exit;
+	int		nbcollec;
+	t_cords	dimensions;
+}	t_map;
+
+/* typedef struct	s_cell
+{
+	void	*content;
+	t_cords	cords;
+	t_cell	up;
+	t_cell	right;
+	t_cell	down;
+	t_cell	left;
+}				t_cell; */
 
 // input handling
-char	**read_args(t_args args);
+t_map	read_args(t_args args);
 
 // map checking
-void	check_map(char **map);
+void	check_map(t_map *map);
 
 // output handling
 int		print_error(char *err);
