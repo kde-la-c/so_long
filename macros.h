@@ -13,11 +13,11 @@
 #ifndef MACROS_H
 # define MACROS_H
 
-# define CHAR_SET	"01CEP\n"
-# define WALL		'1'
-# define SPACE		'0'
-# define PLAYER		'P'
-# define COLLEC		'C'
-# define EXIT		'E'
+# define CH_SET		"01CEP\n"
+# define CH_WALL	'1'
+# define CH_SPACE	'0'
+# define CH_PLAYER	'P'
+# define CH_COLLEC	'C'
+# define CH_EXIT	'E'
 
 #endif

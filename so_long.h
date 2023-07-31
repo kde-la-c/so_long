@@ -42,16 +42,6 @@ typedef struct s_map
 	t_cords	dimensions;
 }	t_map;
 
-/* typedef struct	s_cell
-{
-	void	*content;
-	t_cords	cords;
-	t_cell	up;
-	t_cell	right;
-	t_cell	down;
-	t_cell	left;
-}				t_cell; */
-
 // input handling
 t_map	read_args(t_args args);
 
@@ -60,5 +50,7 @@ void	check_map(t_map *map);
 
 // output handling
 int		print_error(char *err);
+
+t_cords	setcords(int x, int y);
 
 #endif

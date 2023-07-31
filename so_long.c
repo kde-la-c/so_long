@@ -12,6 +12,15 @@
 
 #include "so_long.h"
 
+t_cords	setcords(int x, int y)
+{
+	t_cords	ret;
+
+	ret.x = x;
+	ret.y = y;
+	return (ret);
+}
+
 int	main(int argc, char **argv)
 {
 	t_count	c;

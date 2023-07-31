@@ -17,5 +17,4 @@ int	print_error(char *err)
 	write(2, &err[0], ft_strlen(err));
 	write(2, "\n", 1);
 	exit(1);
-	// return (perror(err), 1);
 }

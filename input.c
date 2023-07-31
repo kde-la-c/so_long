@@ -44,6 +44,7 @@ t_map	read_args(t_args args)
 	path = args.argv[1];
 	if (ft_strncmp(&path[ft_strlen(path) - 4], ".ber", 5))
 		print_error("Invalid map name");
+	ft_bzero((void *)&map, sizeof(t_map));
 	map.map = parse_map(path);
 	map.tmpmap = parse_map(path);
 	return (map);
