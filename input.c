@@ -12,7 +12,7 @@
 
 #include "so_long.h"
 
-char	**parse_map(char *path)
+char	**parse_map(char *path, t_cords *dimensions)
 {
 	t_count	c;
 	char	**map;
@@ -29,8 +29,13 @@ char	**parse_map(char *path)
 	if (c.i == -1)
 		print_error("Couldn't open map");
 	map[c.j] = get_next_line(c.i);
-	while (map[c.j++])
-		map[c.j] = get_next_line(c.i);
+	while (map[c.j])
+		map[++c.j] = get_next_line(c.i);
+	if (dimensions)
+	{
+		dimensions->r = c.j;
+		dimensions->c = (int)ft_strlen(map[0]) - 1;
+	}
 	return (map);
 }
 
@@ -45,7 +50,7 @@ t_map	read_args(t_args args)
 	if (ft_strncmp(&path[ft_strlen(path) - 4], ".ber", 5))
 		print_error("Invalid map name");
 	ft_bzero((void *)&map, sizeof(t_map));
-	map.map = parse_map(path);
-	map.tmpmap = parse_map(path);
+	map.map = parse_map(path, &map.dimensions);
+	map.tmpmap = parse_map(path, NULL);
 	return (map);
 }

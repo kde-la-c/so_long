@@ -40,6 +40,7 @@ typedef struct s_map
 	t_cords	exit;
 	int		nbcollec;
 	t_cords	dimensions;
+	int		path;
 }	t_map;
 
 // input handling
@@ -51,6 +52,6 @@ void	check_map(t_map *map);
 // output handling
 int		print_error(char *err);
 
-t_cords	setcords(int x, int y);
+t_cords	setcords(int r, int c);
 
 #endif

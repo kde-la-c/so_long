@@ -12,62 +12,70 @@
 
 #include "so_long.h"
 
-//TODO flood changing everything to players and reducing number of required elements when you touch them
-// i can check all P that have at least one neighbouring !P
-// if i havent reached all C and E before the end or have reached a limit at any time the map is wrong
-/* int	find_path(t_map *map, t_cords cords)
-{
-	int	ret;
+void	check_cell(t_map *map, t_cords cords);
 
-	if ((*map).tmpmap[cords.x][cords.y] != CH_PLAYER)
-		return (0);
-	else
-	{
-		ret = check_cell(&(*map), setcords(cords.x, cords.y - 1));
-		ret += check_cell(&(*map), setcords(cords.x + 1, cords.y));
-		ret += check_cell(&(*map), setcords(cords.x, cords.y + 1));
-		ret += check_cell(&(*map), setcords(cords.x - 1, cords.y));
-	}
-	return (ret);
+void	find_path(t_map *map, t_cords cords)
+{
+	check_cell(&(*map), setcords(cords.r - 1, cords.c));
+	check_cell(&(*map), setcords(cords.r, cords.c + 1));
+	check_cell(&(*map), setcords(cords.r + 1, cords.c));
+	check_cell(&(*map), setcords(cords.r, cords.c - 1));
 }
 
-int	check_cell(t_map *map, t_cords cords)
+void	check_cell(t_map *map, t_cords cords)
 {
-	if ((*map).tmpmap[cords.x][cords.y] == CH_PLAYER
-		|| ((*map).tmpmap[cords.x][cords.y] == CH_SPACE 
-			&& (cords.x != 0 && (*map).tmpmap[cords.x + 1][cords.y] != '\n'
-				&&)))
-} */
+	if (map->tmpmap[cords.r][cords.c] != CH_WALL
+		&& (cords.r == 0 || cords.r == map->dimensions.r
+			|| cords.c == 0 || cords.c == map->dimensions.c))
+		print_error("Invalid path");
+	else if (map->tmpmap[cords.r][cords.c] == CH_WALL
+		|| map->tmpmap[cords.r][cords.c] == CH_PLAYER)
+		return ;
+	if (map->tmpmap[cords.r][cords.c] == CH_COLLEC)
+		map->nbcollec--;
+	if (map->tmpmap[cords.r][cords.c] == CH_EXIT)
+		map->path = 1;
+	map->tmpmap[cords.r][cords.c] = CH_PLAYER;
+	find_path(&(*map), cords);
+}
 
 int	check_req(t_map *map)
 {
 	t_count	c;
 
 	ft_bzero((void *)&c, sizeof(t_count));
-	while ((*map).map[c.i] && (*map).map[c.i][c.j])
+	while (map->map[c.i] && map->map[c.i][c.j])
 	{
-		if (!c.j && ft_strlen((*map).map[0]) != ft_strlen((*map).map[c.i]))
+		if (!c.j && (map->dimensions.c + 1)
+			!= (int)ft_strlen(map->map[c.i]) + (c.i + 1 == map->dimensions.r))
 			return (0);
-		else if (!ft_strchr(CH_SET, (*map).map[c.i][c.j]))	
+		else if (!ft_strchr(CH_SET, map->map[c.i][c.j]))
 			return (0);
-		else if ((*map).map[c.i][c.j] == CH_COLLEC)
-			(*map).nbcollec++;
-		else if ((*map).map[c.i][c.j] == CH_PLAYER && ++c.k)
-			(*map).player = setcords((int)c.i, (int)c.j);
-		else if ((*map).map[c.i][c.j] == CH_EXIT && ++c.l)
-			(*map).exit = setcords((int)c.i, (int)c.j);
+		else if (map->map[c.i][c.j] == CH_COLLEC)
+			map->nbcollec++;
+		else if (map->map[c.i][c.j] == CH_PLAYER && ++c.k)
+			map->player = setcords((int)c.i, (int)c.j);
+		else if (map->map[c.i][c.j] == CH_EXIT && ++c.l)
+			map->exit = setcords((int)c.i, (int)c.j);
 		c.j++;
-		if ((*map).map[c.i][c.j] == '\n')
+		if (map->map[c.i][c.j] == '\n')
 		{
 			c.i++;
 			c.j = 0;
 		}
 	}
-	return ((c.k == 1 && c.l == 1 && (*map).nbcollec));
+	return ((c.k == 1 && c.l == 1 && map->nbcollec));
 }
 
 void	check_map(t_map *map)
 {
 	if (!check_req(&(*map)))
 		print_error("Invalid map");
+	if (map->player.c != map->dimensions.c && map->player.c != 0
+		&& map->player.r != map->dimensions.r && map->player.r != 0)
+		find_path(map, map->player);
+	else
+		print_error("Invalid path");
+	if (!map->path || map->nbcollec)
+		print_error("Invalid path");
 }

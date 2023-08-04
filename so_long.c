@@ -12,12 +12,12 @@
 
 #include "so_long.h"
 
-t_cords	setcords(int x, int y)
+t_cords	setcords(int r, int c)
 {
 	t_cords	ret;
 
-	ret.x = x;
-	ret.y = y;
+	ret.r = r;
+	ret.c = c;
 	return (ret);
 }
 
