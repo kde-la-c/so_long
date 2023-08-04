@@ -43,6 +43,15 @@ typedef struct s_map
 	int		path;
 }	t_map;
 
+typedef struct s_img
+{
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}	t_img;
+
 // input handling
 t_map	read_args(t_args args);
 

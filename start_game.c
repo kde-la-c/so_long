@@ -14,14 +14,16 @@
 
 void	start_game(t_map *map)
 {
-	void	*img;
 	void	*mlx;
 	void	*mlx_win;
+	t_img	img;
 
 	(void) map;
 	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!");
-	img = mlx_new_image(mlx, 1920, 1080);
+	mlx_win = mlx_new_window(mlx, map->dimensions.c * 32, map->dimensions.r * 32, "Hello world!");
+
+	img.img = mlx_new_image(mlx, map->dimensions.c * 30, map->dimensions.r * 30);
+	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
+			&img.endian);
 	mlx_loop(mlx);
-	// mlx_get_data_addr()
 }
