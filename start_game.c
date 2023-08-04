@@ -1,42 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   start_game.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kde-la-c <kde-la-c@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/09 17:08:42 by kde-la-c          #+#    #+#             */
-/*   Updated: 2023/07/09 17:08:45 by kde-la-c         ###   ########.fr       */
+/*   Created: 2023/08/04 04:41:54 by kde-la-c          #+#    #+#             */
+/*   Updated: 2023/08/04 04:41:57 by kde-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-t_cords	setcords(int r, int c)
+void	start_game(t_map *map)
 {
-	t_cords	ret;
+	void	*img;
+	void	*mlx;
+	void	*mlx_win;
 
-	ret.r = r;
-	ret.c = c;
-	return (ret);
-}
-
-int	main(int argc, char **argv)
-{
-	t_count	c;
-	t_args	args;
-	t_map	map;
-
-	c.i = 0;
-	args.argc = argc;
-	args.argv = argv;
-	map = read_args(args);
-	check_map(&map);
-	start_game(&map);
-	// while (map.map[c.i])
-	// {
-	// 	ft_printf("%s", map.map[c.i]);
-	// 	c.i++;
-	// }
-	return (0);
+	(void) map;
+	mlx = mlx_init();
+	mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!");
+	img = mlx_new_image(mlx, 1920, 1080);
+	mlx_loop(mlx);
+	// mlx_get_data_addr()
 }

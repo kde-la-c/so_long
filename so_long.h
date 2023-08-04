@@ -52,6 +52,10 @@ void	check_map(t_map *map);
 // output handling
 int		print_error(char *err);
 
+// mlx
+void	start_game(t_map *map);
+
+// utils
 t_cords	setcords(int r, int c);
 
 #endif

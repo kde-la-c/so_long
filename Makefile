@@ -15,7 +15,8 @@ NAME_DBG	= dbg
 SRC			= so_long.c\
 			input.c\
 			output.c\
-			check_map.c
+			check_map.c\
+			start_game.c
 OBJS		= $(SRC:%.c=%.o)
 INCLUDE		= so_long.h\
 			macros.h
