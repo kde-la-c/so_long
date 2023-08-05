@@ -12,16 +12,12 @@
 
 #include "so_long.h"
 
-t_mlxptr	create_mlx(t_map map)
+void	create_mlx(t_map *map, t_mlxptr *ret, t_count *c)
 {
-	t_mlxptr	ret;
-	t_count		c;
-
-	c.i = map.dimensions.c * 32;
-	c.j = map.dimensions.r * 32;
-	ret.mlx = mlx_init();
-	ret.win = mlx_new_window(ret.mlx, c.i, c.j, "so_long");
-	return (ret);
+	c->i = map->dimensions.c * 32;
+	c->j = map->dimensions.r * 32;
+	ret->mlx = mlx_init();
+	ret->win = mlx_new_window(ret->mlx, c->i, c->j, "so_long");
 }
 
 void	start_game(t_map *map)
@@ -30,11 +26,9 @@ void	start_game(t_map *map)
 	t_img		img;
 	t_mlxptr	mlx;
 
-	mlx = create_mlx(*map);
-
+	create_mlx(map, &mlx, &c);
 	img.img = mlx_new_image(mlx.mlx, c.i, c.j);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
-			&img.endian);
 	mlx_hook(mlx.win, 17, 1L << 5, on_destroy, &mlx);
+	mlx_key_hook(mlx.win, on_key, &mlx);
 	mlx_loop(mlx.mlx);
 }

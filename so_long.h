@@ -39,7 +39,8 @@ int		print_output(char *msg);
 void	start_game(t_map *map);
 
 // hooks
-int		on_destroy(void *vars);
+int		on_destroy(t_mlxptr *vars);
+int		on_key(int key, t_mlxptr *vars);
 
 // utils
 t_cords	setcords(int r, int c);

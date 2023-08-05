@@ -51,7 +51,7 @@ m:			$(OBJS) $(INCLUDE) $(LIBNAME)
 debug:		$(NAME_DBG)
 
 $(NAME_DBG): $(LIBNAME) $(SRC)
-			$(CC) $(CFLAGS) -fdiagnostics-color=always -g3 $(SRC) $(LIBNAME) -o $@
+			$(CC) $(CFLAGS) $(MLFLAGS) -fdiagnostics-color=always -g3 $(SRC) $(LIBNAME) -o $@
 
 $(LIBNAME):
 			$(MAKE) -C $(LIBPATH)
