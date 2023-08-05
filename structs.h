@@ -44,10 +44,8 @@ typedef struct s_mlxptr
 typedef struct s_img
 {
 	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
+	char	*path;
+	t_cords	dim;
 }	t_img;
 
 #endif
