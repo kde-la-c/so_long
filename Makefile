@@ -16,10 +16,12 @@ SRC			= so_long.c\
 			input.c\
 			output.c\
 			check_map.c\
-			start_game.c
+			start_game.c\
+			events.c
 OBJS		= $(SRC:%.c=%.o)
 INCLUDE		= so_long.h\
-			macros.h
+			macros.h\
+			structs.h
 CC			= gcc
 CFLAGS		= -Wall -Wextra -Werror
 MLFLAGS		= -lmlx -framework OpenGL -framework AppKit

@@ -23,34 +23,7 @@
 
 # include "libft/libft.h"
 # include "macros.h"
-
-typedef struct s_data {
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}	t_data;
-
-typedef struct s_map
-{
-	char	**map;
-	char	**tmpmap;
-	t_cords	player;
-	t_cords	exit;
-	int		nbcollec;
-	t_cords	dimensions;
-	int		path;
-}	t_map;
-
-typedef struct s_img
-{
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}	t_img;
+# include "structs.h"
 
 // input handling
 t_map	read_args(t_args args);
@@ -60,9 +33,13 @@ void	check_map(t_map *map);
 
 // output handling
 int		print_error(char *err);
+int		print_output(char *msg);
 
 // mlx
 void	start_game(t_map *map);
+
+// hooks
+int		on_destroy(void *vars);
 
 // utils
 t_cords	setcords(int r, int c);
