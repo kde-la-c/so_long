@@ -33,10 +33,10 @@ int	main(int argc, char **argv)
 	map = read_args(args);
 	check_map(&map);
 	start_game(&map);
-	/* while (map.map[c.i])
+	while (map.map[c.i])
 	{
 		ft_printf("%s", map.map[c.i]);
 		c.i++;
-	} */
+	}
 	return (0);
 }
