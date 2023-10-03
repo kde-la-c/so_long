@@ -16,6 +16,7 @@ a.out
 *.o
 *.a
 dbg*
+main.c
 
 so_long
 *.ber
