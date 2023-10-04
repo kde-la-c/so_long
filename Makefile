@@ -25,7 +25,7 @@ INCLUDE		= so_long.h\
 CC			= gcc
 CFLAGS		= -Wall -Wextra -Werror
 # MLFLAGS		= -lmlx -framework OpenGL -framework AppKit
-MLFLAGS		= -L../minilibx_linux -lmlx -lXext -lX11 -lm -lz
+MLFLAGS		= -lm -lbsd -lmlx -lXext -lX11
 RM			= rm
 RFLAGS		= -rf
 
