@@ -33,6 +33,7 @@ void	check_map(t_map *map);
 
 // output handling
 int		print_error(char *err);
+int		perror_exit(char *err);
 int		print_output(char *msg);
 
 // mlx

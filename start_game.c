@@ -24,18 +24,16 @@ void	start_game(t_map *map)
 {
 	t_count		c;
 	t_img		img;
-	// void		*imag;
 	t_mlxptr	mlx;
 
-	img.path = "./sprites/test.xpm";
-	img.dim.c = 32;
-	img.dim.r = 32;
 	create_mlx(map, &mlx, &c);
-	// img.img = mlx_new_image(mlx.mlx, c.i, c.j);
+	img.path = "./sprites/heisenbergx64.xpm";
+	img.dim.c = 64;
+	img.dim.r = 64;
 	img.img = mlx_xpm_file_to_image(mlx.mlx, img.path, &img.dim.c, &img.dim.r);
 	if (!img.img)
-		print_error("image creation error");
-	mlx_put_image_to_window(mlx.mlx, mlx.win, img.img, 10, 10);
+		perror_exit(img.path);
+	mlx_put_image_to_window(mlx.mlx, mlx.win, img.img, 0, 0);
 	mlx_hook(mlx.win, 17, 1L << 5, on_destroy, &mlx);
 	mlx_key_hook(mlx.win, on_key, &mlx);
 	mlx_loop(mlx.mlx);

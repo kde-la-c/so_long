@@ -19,6 +19,12 @@ int	print_error(char *err)
 	exit(1);
 }
 
+int	perror_exit(char *err)
+{
+	perror(err);
+	exit(1);
+}
+
 int	print_output(char *msg)
 {
 	write(2, &msg[0], ft_strlen(msg));
