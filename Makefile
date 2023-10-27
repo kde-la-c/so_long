@@ -24,8 +24,8 @@ INCLUDE		= so_long.h\
 			structs.h
 CC			= gcc
 CFLAGS		= -Wall -Wextra -Werror
-# MLFLAGS		= -lmlx -framework OpenGL -framework AppKit
-MLFLAGS		= -lm -lbsd -lmlx -lXext -lX11
+MLFLAGS		= -lmlx -framework OpenGL -framework AppKit
+# MLFLAGS		= -lm -lbsd -lmlx -lXext -lX11
 RM			= rm
 RFLAGS		= -rf
 
@@ -37,6 +37,7 @@ all:		$(NAME)
 $(NAME):	$(OBJS) $(INCLUDE) $(LIBNAME)
 			$(CC) $(CFLAGS) $(OBJS) $(MLFLAGS) -o $(NAME) $(LIBNAME)
 	$(RM) $(RFLAGS) $(OBJS)
+	@echo "\033[0;31m--- RELINK ---\033[0m"
 			@echo "\033[0;32m--- $(NAME) compiled successfully! ---\033[0m"
 
 l:			$(OBJS) $(INCLUDE) $(LIBNAME)
