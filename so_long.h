@@ -46,4 +46,7 @@ int		on_key(int key, t_mlxptr *vars);
 // utils
 t_cords	setcords(int r, int c);
 
+
+int	draw_map(t_mlxptr mlx, t_map *map);
+
 #endif
