@@ -40,7 +40,7 @@ int		print_output(char *msg);
 void	start_game(t_map *map);
 
 // hooks
-int		on_destroy(t_mlxptr *vars);
+int		on_destroy();
 int		on_key(int key, t_mlxptr *vars);
 
 // utils

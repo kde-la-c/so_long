@@ -12,25 +12,27 @@
 
 #include "so_long.h"
 
-int	on_destroy(t_mlxptr *vars)
+int	on_destroy()
 {
-	(void)vars;
 	print_output("window closed");
 	return (0);
 }
 
-int	on_key(int key, t_mlxptr *vars)
+int	on_key(int key, t_mlxptr *mlx)
 {
+	static int	moves = 0;
+	(void)mlx;
+
 	if (key == KEY_ESC)
-		on_destroy(vars);
-	// else if (key == KEY_UP || key == KEY_W)
-	// 	move(1);
-	// else if (key == KEY_LEFT || key == KEY_A)
-	// 	move(2);
-	// else if (key == KEY_DOWN || key == KEY_S)
-	// 	move(3);
-	// else if (key == KEY_RIGHT || key == KEY_D)
-	// 	move(4);
-	ft_printf("key :%i\n", key);
+		on_destroy();
+	else if ((key == KEY_UP || key == KEY_W) && ++moves)
+		ft_printf("key : UP\n");
+	else if ((key == KEY_LEFT || key == KEY_A) && ++moves)
+		ft_printf("key : LEFT\n");
+	else if ((key == KEY_DOWN || key == KEY_S) && ++moves)
+		ft_printf("key : DOWN\n");
+	else if ((key == KEY_RIGHT || key == KEY_D) && ++moves)
+		ft_printf("key : RIGHT\n");
+	ft_printf("%i moves\n", moves);
 	return (0);
 }
