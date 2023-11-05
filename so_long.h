@@ -49,4 +49,7 @@ t_cords	setcords(int r, int c);
 
 int	draw_map(t_mlxptr mlx, t_map *map);
 
+
+void	draw_sprite(t_mlxptr mlx, t_img img, t_cords tile);
+
 #endif

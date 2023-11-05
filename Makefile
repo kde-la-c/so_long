@@ -18,7 +18,8 @@ SRC			= so_long.c\
 			check_map.c\
 			start_game.c\
 			events.c\
-			play_game.c
+			play_game.c\
+			movement.c
 OBJS		= $(SRC:%.c=%.o)
 INCLUDE		= so_long.h\
 			macros.h\

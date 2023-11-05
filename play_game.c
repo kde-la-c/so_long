@@ -25,7 +25,13 @@ t_img	create_img(t_mlxptr mlx, char *path, int dim)
 	return (ret);
 }
 
-void	draw_sprite(t_mlxptr mlx, t_img img, t_map *map, int ch)
+void	draw_sprite(t_mlxptr mlx, t_img img, t_cords tile)
+{
+	mlx_put_image_to_window(mlx.mlx, mlx.win, img.img,
+	img.dim.c * tile.c, img.dim.r * tile.r);
+}
+
+void	draw_sprites(t_mlxptr mlx, t_img img, t_map *map, int ch)
 {
 	t_count	c;
 
@@ -49,12 +55,15 @@ int	draw_map(t_mlxptr mlx, t_map *map)
 	t_img	floor;
 	t_img	wall;
 	t_img	character;
+	t_img	collectible;
 
 	floor = create_img(mlx, "./sprites/floorx32.xpm", 32);
 	wall = create_img(mlx, "./sprites/wallx32.xpm", 32);
 	character = create_img(mlx, "./sprites/heisenbergx32.xpm", 32);
-	draw_sprite(mlx, floor, map, 0);
-	draw_sprite(mlx, wall, map, CH_WALL);
-	draw_sprite(mlx, character, map, CH_PLAYER);
+	collectible = create_img(mlx, "./sprites/crystalx32.xpm", 32);
+	draw_sprites(mlx, floor, map, 0);
+	draw_sprites(mlx, wall, map, CH_WALL);
+	draw_sprites(mlx, character, map, CH_PLAYER);
+	draw_sprites(mlx, collectible, map, CH_COLLEC);
 	return (1);
 }
