@@ -26,13 +26,22 @@ INCLUDE		= so_long.h\
 			structs.h
 CC			= gcc
 CFLAGS		= -Wall -Wextra -Werror
-MLFLAGS		= -lmlx -framework OpenGL -framework AppKit
+# MLFLAGS		= -lmlx -framework OpenGL -framework AppKit
 # MLFLAGS		= -lm -lbsd -lmlx -lXext -lX11
 RM			= rm
 RFLAGS		= -rf
 
 LIBNAME		= libft.a
 LIBPATH		= libft/
+
+UNAME		:= $(shell uname)
+
+ifeq ($(UNAME), Darwin)
+  MLFLAGS := -lmlx -framework OpenGL -framework AppKit
+endif
+ifeq ($(UNAME), Linux)
+  MLFLAGS := -lm -lbsd -lmlx -lXext -lX11
+endif
 
 all:		$(NAME)
 
