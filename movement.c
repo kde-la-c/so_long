@@ -36,21 +36,22 @@ void	find_char(t_map map, char ch, t_cords *ret)
 		ret = NULL;
 }
 
-void	move(t_mlxptr *mlx, t_map *map, int direction) //dir: 1=up 2=left 3=down 4=right
+void	move(t_mlxptr *mlx, int direction)
 {
 	t_cords	dest;
+	t_cords	pl;
 	(void)dest;
 	(void)mlx;
 
-	printf("cords : %i %i\n", map->player.r, map->player.c);
-	if (direction == 1 && map->map[map->player.r - 1][map->player.c] != CH_WALL)
-		dest = setcords(map->player.r - 1, map->player.c);
-	else if (direction == 2 && map->map[map->player.r][map->player.c - 1] != CH_WALL)
-		dest = setcords(map->player.r, map->player.c - 1);
-	else if (direction == 3 && map->map[map->player.r + 1][map->player.c] != CH_WALL)
-		dest = setcords(map->player.r + 1, map->player.c);
-	else if (direction == 4 && map->map[map->player.r][map->player.c + 1] != CH_WALL)
-		dest = setcords(map->player.r, map->player.c + 1);
+	pl = mlx->map.player;
+	if (direction == 1 && mlx->map.map[pl.r - 1][pl.c] != CH_WALL)
+		dest = setcords(pl.r - 1, pl.c);
+	else if (direction == 2 && mlx->map.map[pl.r][pl.c - 1] != CH_WALL)
+		dest = setcords(pl.r, pl.c - 1);
+	else if (direction == 3 && mlx->map.map[pl.r + 1][pl.c] != CH_WALL)
+		dest = setcords(pl.r + 1, pl.c);
+	else if (direction == 4 && mlx->map.map[pl.r][pl.c + 1] != CH_WALL)
+		dest = setcords(pl.r, pl.c + 1);
 	else
 		return ;
 	printf("move ok\n");

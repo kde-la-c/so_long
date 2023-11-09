@@ -37,20 +37,18 @@ int		perror_exit(char *err);
 int		print_output(char *msg);
 
 // mlx
-void	start_game(t_map *map);
+void	start_game(t_mlxptr	mlx);
 
 // hooks
-int		on_destroy();
-int		on_key(int key, t_mlxptr *vars, t_map *map);
+int		on_destroy(void);
+int		on_key(int key, t_mlxptr *mlx);
 
 // utils
 t_cords	setcords(int r, int c);
 
-
-int	draw_map(t_mlxptr mlx, t_map *map);
-
+int		draw_map(t_mlxptr mlx, t_map *map);
 
 void	draw_sprite(t_mlxptr mlx, t_img img, t_cords tile);
-void	move(t_mlxptr *mlx, t_map *map, int direction);
+void	move(t_mlxptr *mlx, int direction);
 
 #endif

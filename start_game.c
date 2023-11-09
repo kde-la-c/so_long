@@ -20,13 +20,12 @@ void	create_mlx(t_map *map, t_mlxptr *ret, t_count *c)
 	ret->win = mlx_new_window(ret->mlx, c->i, c->j, "so_long");
 }
 
-void	start_game(t_map *map)
+void	start_game(t_mlxptr mlx)
 {
 	t_count		c;
-	t_mlxptr	mlx;
 
-	create_mlx(map, &mlx, &c);
-	draw_map(mlx, map);
+	create_mlx(&mlx.map, &mlx, &c);
+	draw_map(mlx, &mlx.map);
 	mlx_hook(mlx.win, 17, 1L << 5, on_destroy, &mlx);
 	mlx_key_hook(mlx.win, on_key, &mlx);
 	mlx_loop(mlx.mlx);

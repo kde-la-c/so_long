@@ -42,5 +42,4 @@
 #  define KEY_RIGHT	65363
 # endif
 
-
 #endif

@@ -28,7 +28,7 @@ t_img	create_img(t_mlxptr mlx, char *path, int dim)
 void	draw_sprite(t_mlxptr mlx, t_img img, t_cords tile)
 {
 	mlx_put_image_to_window(mlx.mlx, mlx.win, img.img,
-	img.dim.c * tile.c, img.dim.r * tile.r);
+		img.dim.c * tile.c, img.dim.r * tile.r);
 }
 
 void	draw_sprites(t_mlxptr mlx, t_img img, t_map *map, int ch)

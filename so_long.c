@@ -23,14 +23,13 @@ t_cords	setcords(int r, int c)
 
 int	main(int argc, char **argv)
 {
-	t_args	args;
-	t_map	map;
+	t_mlxptr	mlx;
+	t_args		args;
 
 	args.argc = argc;
 	args.argv = argv;
-	map = read_args(args);
-	check_map(&map);
-	// printf("cords: %i %i\n", map.player.r, map.player.c);
-	start_game(&map);
+	mlx.map = read_args(args);
+	check_map(&mlx.map);
+	start_game(mlx);
 	return (0);
 }

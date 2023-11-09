@@ -54,11 +54,7 @@ int	check_req(t_map *map)
 		else if (map->map[c.i][c.j] == CH_COLLEC)
 			map->nbcollec++;
 		else if (map->map[c.i][c.j] == CH_PLAYER && ++c.k)
-		{
-			// printf("cords: %i %i\n", (int)c.i, (int)c.j);
 			map->player = setcords((int)c.i, (int)c.j);
-			// printf("cords: %i %i\n", map->player.r, map->player.c);
-		}
 		else if (map->map[c.i][c.j] == CH_EXIT && ++c.l)
 			map->exit = setcords((int)c.i, (int)c.j);
 		c.j++;

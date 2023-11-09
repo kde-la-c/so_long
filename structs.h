@@ -41,6 +41,7 @@ typedef struct s_mlxptr
 {
 	void	*mlx;
 	void	*win;
+	t_map	map;
 }	t_mlxptr;
 
 #endif
