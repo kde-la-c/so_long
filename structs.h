@@ -15,14 +15,12 @@
 
 # include "libft/libft.h"
 
-typedef struct s_data
+typedef struct s_img
 {
 	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}	t_data;
+	char	*path;
+	t_cords	dim;
+}	t_img;
 
 typedef struct s_map
 {
@@ -33,6 +31,10 @@ typedef struct s_map
 	int		nbcollec;
 	t_cords	dimensions;
 	int		path;
+	t_img	floor;
+	t_img	wall;
+	t_img	character;
+	t_img	collectible;
 }	t_map;
 
 typedef struct s_mlxptr
@@ -40,12 +42,5 @@ typedef struct s_mlxptr
 	void	*mlx;
 	void	*win;
 }	t_mlxptr;
-
-typedef struct s_img
-{
-	void	*img;
-	char	*path;
-	t_cords	dim;
-}	t_img;
 
 #endif

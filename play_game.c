@@ -52,18 +52,13 @@ void	draw_sprites(t_mlxptr mlx, t_img img, t_map *map, int ch)
 
 int	draw_map(t_mlxptr mlx, t_map *map)
 {
-	t_img	floor;
-	t_img	wall;
-	t_img	character;
-	t_img	collectible;
-
-	floor = create_img(mlx, "./sprites/floorx32.xpm", 32);
-	wall = create_img(mlx, "./sprites/wallx32.xpm", 32);
-	character = create_img(mlx, "./sprites/heisenbergx32.xpm", 32);
-	collectible = create_img(mlx, "./sprites/crystalx32.xpm", 32);
-	draw_sprites(mlx, floor, map, 0);
-	draw_sprites(mlx, wall, map, CH_WALL);
-	draw_sprites(mlx, character, map, CH_PLAYER);
-	draw_sprites(mlx, collectible, map, CH_COLLEC);
+	map->floor = create_img(mlx, "./sprites/floorx32.xpm", 32);
+	map->wall = create_img(mlx, "./sprites/wallx32.xpm", 32);
+	map->character = create_img(mlx, "./sprites/heisenbergx32.xpm", 32);
+	map->collectible = create_img(mlx, "./sprites/crystalx32.xpm", 32);
+	draw_sprites(mlx, map->floor, map, 0);
+	draw_sprites(mlx, map->wall, map, CH_WALL);
+	draw_sprites(mlx, map->character, map, CH_PLAYER);
+	draw_sprites(mlx, map->collectible, map, CH_COLLEC);
 	return (1);
 }
