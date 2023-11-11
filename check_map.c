@@ -52,7 +52,7 @@ int	check_req(t_map *map)
 		else if (!ft_strchr(CH_SET, map->map[c.i][c.j]))
 			return (0);
 		else if (map->map[c.i][c.j] == CH_COLLEC)
-			map->nbcollec++;
+			map->nbcollec += 1;
 		else if (map->map[c.i][c.j] == CH_PLAYER && ++c.k)
 			map->player = setcords((int)c.i, (int)c.j);
 		else if (map->map[c.i][c.j] == CH_EXIT && ++c.l)

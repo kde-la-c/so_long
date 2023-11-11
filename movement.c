@@ -54,6 +54,12 @@ void	move(t_mlxptr *mlx, int direction)
 		dest = setcords(pl.r, pl.c + 1);
 	else
 		return ;
-	printf("move ok\n");
+	draw_sprite(*mlx, mlx->map.floor, pl);
+	if (mlx->map.map[dest.r][dest.c] == CH_COLLEC)
+		mlx->map.nbcollec -= 1;
+	draw_sprite(*mlx, mlx->map.floor, dest);
+	draw_sprite(*mlx, mlx->map.character, dest);
+	mlx->map.player = dest;
+	printf("nbcollec :%i\n", mlx->map.nbcollec);
 }
 

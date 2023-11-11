@@ -30,6 +30,7 @@ int	main(int argc, char **argv)
 	args.argv = argv;
 	mlx.map = read_args(args);
 	check_map(&mlx.map);
+	printf("coolecs? %i\n", mlx.map.nbcollec);
 	start_game(mlx);
 	return (0);
 }
