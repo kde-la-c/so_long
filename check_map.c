@@ -69,8 +69,11 @@ int	check_req(t_map *map)
 
 void	check_map(t_map *map)
 {
+	int	tmp;
+
 	if (!check_req(&(*map)))
 		print_error("Invalid map");
+	tmp = map->nbcollec;
 	if (map->player.c != map->dimensions.c && map->player.c != 0
 		&& map->player.r != map->dimensions.r && map->player.r != 0)
 		find_path(map, map->player);
@@ -78,4 +81,5 @@ void	check_map(t_map *map)
 		print_error("Invalid path");
 	if (!map->path || map->nbcollec)
 		print_error("Invalid path");
+	map->nbcollec = tmp;
 }

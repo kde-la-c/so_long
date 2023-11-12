@@ -36,30 +36,30 @@ void	find_char(t_map map, char ch, t_cords *ret)
 		ret = NULL;
 }
 
-void	move(t_mlxptr *mlx, int direction)
+void	move(t_mlxptr mlx, int direction)
 {
 	t_cords	dest;
 	t_cords	pl;
-	(void)dest;
-	(void)mlx;
 
-	pl = mlx->map.player;
-	if (direction == 1 && mlx->map.map[pl.r - 1][pl.c] != CH_WALL)
+	printf("%i %i\n", mlx.i_floor.dim.r, mlx.i_floor.dim.c);
+	pl = mlx.map.player;
+	if (direction == 1 && mlx.map.map[pl.r - 1][pl.c] != CH_WALL)
 		dest = setcords(pl.r - 1, pl.c);
-	else if (direction == 2 && mlx->map.map[pl.r][pl.c - 1] != CH_WALL)
+	else if (direction == 2 && mlx.map.map[pl.r][pl.c - 1] != CH_WALL)
 		dest = setcords(pl.r, pl.c - 1);
-	else if (direction == 3 && mlx->map.map[pl.r + 1][pl.c] != CH_WALL)
+	else if (direction == 3 && mlx.map.map[pl.r + 1][pl.c] != CH_WALL)
 		dest = setcords(pl.r + 1, pl.c);
-	else if (direction == 4 && mlx->map.map[pl.r][pl.c + 1] != CH_WALL)
+	else if (direction == 4 && mlx.map.map[pl.r][pl.c + 1] != CH_WALL)
 		dest = setcords(pl.r, pl.c + 1);
 	else
 		return ;
-	draw_sprite(*mlx, mlx->map.floor, pl);
-	if (mlx->map.map[dest.r][dest.c] == CH_COLLEC)
-		mlx->map.nbcollec -= 1;
-	draw_sprite(*mlx, mlx->map.floor, dest);
-	draw_sprite(*mlx, mlx->map.character, dest);
-	mlx->map.player = dest;
-	printf("nbcollec :%i\n", mlx->map.nbcollec);
+	draw_sprite(mlx, mlx.i_floor, pl);
+	if (mlx.map.map[dest.r][dest.c] == CH_COLLEC)
+	{
+		mlx.map.nbcollec -= 1;
+		mlx.map.map[dest.r][dest.c] = CH_SPACE;
+	}
+	draw_sprite(mlx, mlx.i_floor, dest);
+	draw_sprite(mlx, mlx.i_character, dest);
+	mlx.map.player = dest;
 }
-

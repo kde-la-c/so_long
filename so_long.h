@@ -41,14 +41,14 @@ void	start_game(t_mlxptr	mlx);
 
 // hooks
 int		on_destroy(void);
-int		on_key(int key, t_mlxptr *mlx);
+int		on_key(int key, void *mlx);
 
 // utils
 t_cords	setcords(int r, int c);
 
-int		draw_map(t_mlxptr mlx, t_map *map);
+int		draw_map(t_mlxptr mlx);
 
 void	draw_sprite(t_mlxptr mlx, t_img img, t_cords tile);
-void	move(t_mlxptr *mlx, int direction);
+void	move(t_mlxptr mlx, int direction);
 
 #endif

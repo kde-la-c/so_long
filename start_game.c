@@ -25,7 +25,7 @@ void	start_game(t_mlxptr mlx)
 	t_count		c;
 
 	create_mlx(&mlx.map, &mlx, &c);
-	draw_map(mlx, &mlx.map);
+	draw_map(mlx);
 	mlx_hook(mlx.win, 17, 1L << 5, on_destroy, &mlx);
 	mlx_key_hook(mlx.win, on_key, &mlx);
 	mlx_loop(mlx.mlx);

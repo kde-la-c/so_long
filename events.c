@@ -18,12 +18,17 @@ int	on_destroy(void)
 	return (0);
 }
 
-int	on_key(int key, t_mlxptr *mlx)
+int	on_key(int key, void *arg)
 {
+	t_mlxptr	mlx;
 	static int	moves = 0;
 
+	mlx = *(t_mlxptr *)arg;
+	printf("%i %i\n", mlx.i_floor.dim.r, mlx.i_floor.dim.c);
 	if (key == KEY_ESC)
 		on_destroy();
+	else if (!mlx.map.nbcollec)
+		draw_sprite(mlx, mlx.i_open, mlx.map.exit);
 	else if ((key == KEY_UP || key == KEY_W) && ++moves)
 		move(mlx, 1);
 	else if ((key == KEY_LEFT || key == KEY_A) && ++moves)
