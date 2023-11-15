@@ -41,7 +41,6 @@ void	move(t_mlxptr mlx, int direction)
 	t_cords	dest;
 	t_cords	pl;
 
-	printf("%i %i\n", mlx.i_floor.dim.r, mlx.i_floor.dim.c);
 	pl = mlx.map.player;
 	if (direction == 1 && mlx.map.map[pl.r - 1][pl.c] != CH_WALL)
 		dest = setcords(pl.r - 1, pl.c);

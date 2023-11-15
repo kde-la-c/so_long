@@ -27,9 +27,8 @@ t_img	create_img(t_mlxptr mlx, char *path, int dim)
 
 void	draw_sprite(t_mlxptr mlx, t_img img, t_cords tile)
 {
-	printf(">%i %i\n", img.dim.r, img.dim.c);
-	printf("%i\n", mlx_put_image_to_window(mlx.mlx, mlx.win, img.img,
-			img.dim.c * tile.c, img.dim.r * tile.r));
+	mlx_put_image_to_window(mlx.mlx, mlx.win, img.img,
+		img.dim.c * tile.c, img.dim.r * tile.r);
 }
 
 void	draw_sprites(t_mlxptr mlx, t_img img, int ch)
@@ -62,6 +61,6 @@ int	draw_map(t_mlxptr mlx)
 	draw_sprites(mlx, mlx.i_wall, CH_WALL);
 	draw_sprites(mlx, mlx.i_character, CH_PLAYER);
 	draw_sprites(mlx, mlx.i_collectible, CH_COLLEC);
-	draw_sprite(mlx, mlx.i_open, mlx.map.exit);
+	draw_sprite(mlx, mlx.i_closed, mlx.map.exit);
 	return (1);
 }

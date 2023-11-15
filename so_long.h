@@ -37,11 +37,11 @@ int		perror_exit(char *err);
 int		print_output(char *msg);
 
 // mlx
-void	start_game(t_mlxptr	mlx);
+void	start_game(t_mlxptr	*mlx);
 
 // hooks
 int		on_destroy(void);
-int		on_key(int key, void *mlx);
+int		on_key(int key, t_mlxptr *mlx);
 
 // utils
 t_cords	setcords(int r, int c);
