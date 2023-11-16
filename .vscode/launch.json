@@ -9,7 +9,7 @@
 		"type": "cppdbg",
 		"request": "launch",
 		"program": "${workspaceFolder}/dbg",
-		"args": ["maps/giant.ber"],
+		"args": ["maps/test.ber"],
 		"stopAtEntry": false,
 		"cwd": "${workspaceFolder}",
 		"environment": [],
