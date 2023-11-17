@@ -12,6 +12,21 @@
 
 #include "so_long.h"
 
+void	print_map(t_mlxptr mlx)
+{
+	t_count	c;
+	char	**map;
+
+	map = mlx.map.map;
+	c.i = 0;
+	while (map[c.i])
+	{
+		ft_printf("%i: %s", c.i, map[c.i]);
+		c.i++;
+	}
+	ft_printf("\n");
+}
+
 t_cords	setcords(int r, int c)
 {
 	t_cords	ret;

@@ -30,6 +30,7 @@
 #  define KEY_LEFT	123
 #  define KEY_DOWN	125
 #  define KEY_RIGHT	124
+#  define KEY_TEST	32
 # elif __linux__
 #  define KEY_ESC	65307
 #  define KEY_W		122
@@ -40,6 +41,7 @@
 #  define KEY_LEFT	65361
 #  define KEY_DOWN	65364
 #  define KEY_RIGHT	65363
+#  define KEY_TEST	32
 # endif
 
 #endif

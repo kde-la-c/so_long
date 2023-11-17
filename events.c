@@ -27,6 +27,8 @@ int	on_key(int key, t_mlxptr *mlx)
 		draw_sprite(*mlx, mlx->i_open, mlx->map.exit);
 	if (key == KEY_ESC)
 		on_destroy();
+	else if (key == KEY_TEST)
+		print_map(*mlx);
 	else if ((key == KEY_UP || key == KEY_W) && ++moves)
 		move(mlx, 1);
 	else if ((key == KEY_LEFT || key == KEY_A) && ++moves)
