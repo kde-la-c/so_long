@@ -36,6 +36,29 @@ void	find_char(t_map map, char ch, t_cords *ret)
 		ret = NULL;
 }
 
+void	edit_map(t_mlxptr *mlx, t_cords dest, t_cords player)
+{
+	if (mlx->map.map[dest.r][dest.c] == CH_COLLEC)
+	{
+		mlx->map.nbcollec -= 1;
+		mlx->map.map[dest.r][dest.c] = CH_SPACE;
+	}
+	if (player.c == mlx->map.exit.c && player.r == mlx->map.exit.r)
+	{
+		mlx->map.map[player.r][player.c] = CH_EXIT;
+		mlx->map.map[dest.r][dest.c] = CH_PLAYER;
+	}
+	else
+	{
+		mlx->map.map[player.r][player.c] = CH_SPACE;
+		mlx->map.map[dest.r][dest.c] = CH_PLAYER;
+	}
+	mlx->map.player = dest;
+	if (!mlx->map.nbcollec && dest.c == mlx->map.exit.c
+		&& player.r == mlx->map.exit.r)
+		on_destroy("YOU WON!");
+}
+
 void	move(t_mlxptr *mlx, int direction)
 {
 	t_cords	dest;
@@ -53,15 +76,6 @@ void	move(t_mlxptr *mlx, int direction)
 		dest = setcords(pl.r, pl.c + 1);
 	else
 		return ;
-	draw_sprite(*mlx, mlx->i_floor, pl);
-	if (mlx->map.map[dest.r][dest.c] == CH_COLLEC)
-	{
-		mlx->map.nbcollec -= 1;
-		mlx->map.map[dest.r][dest.c] = CH_SPACE;
-	}
-	draw_sprite(*mlx, mlx->i_floor, dest);
-	draw_sprite(*mlx, mlx->i_character, dest);
-	mlx->map.map[pl.r][pl.c] = CH_SPACE;
-	mlx->map.map[dest.r][dest.c] = CH_PLAYER;
-	mlx->map.player = dest;
+	edit_map(mlx, dest, pl);
+	draw_map(mlx);
 }
