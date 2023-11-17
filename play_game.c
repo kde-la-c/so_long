@@ -59,11 +59,8 @@ int	draw_map(t_mlxptr *mlx)
 	mlx->i_closed = create_img(*mlx, "./sprites/closedoorx32.xpm", 32);
 	draw_sprites(*mlx, mlx->i_floor, 0);
 	draw_sprites(*mlx, mlx->i_wall, CH_WALL);
-	draw_sprites(*mlx, mlx->i_collectible, CH_COLLEC);
-	if (mlx->map.nbcollec)
-		draw_sprite(*mlx, mlx->i_closed, mlx->map.exit);
-	else
-		draw_sprite(*mlx, mlx->i_open, mlx->map.exit);
 	draw_sprites(*mlx, mlx->i_character, CH_PLAYER);
+	draw_sprites(*mlx, mlx->i_collectible, CH_COLLEC);
+	draw_sprite(*mlx, mlx->i_closed, mlx->map.exit);
 	return (1);
 }
