@@ -40,7 +40,7 @@ int		print_output(char *msg);
 void	start_game(t_mlxptr	*mlx);
 
 // hooks
-int		on_destroy(void);
+int		on_destroy(char *msg);
 int		on_key(int key, t_mlxptr *mlx);
 
 // utils
@@ -50,6 +50,5 @@ int		draw_map(t_mlxptr *mlx);
 
 void	draw_sprite(t_mlxptr mlx, t_img img, t_cords tile);
 void	move(t_mlxptr *mlx, int direction);
-void	print_map(t_mlxptr mlx);
 
 #endif
