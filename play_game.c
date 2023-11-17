@@ -31,34 +31,36 @@ void	draw_sprite(t_mlxptr mlx, t_img img, t_cords tile)
 		img.dim.c * tile.c, img.dim.r * tile.r);
 }
 
-void	draw_sprites(t_mlxptr mlx, t_img img, t_map *map, int ch)
+void	draw_sprites(t_mlxptr mlx, t_img img, int ch)
 {
 	t_count	c;
 
 	ft_bzero((void *)&c, sizeof(t_count));
-	while (c.i < map->dimensions.r)
+	while (c.i < mlx.map.dimensions.r)
 	{
 		c.j = 0;
-		while (c.j < map->dimensions.c)
+		while (c.j < mlx.map.dimensions.c)
 		{
-			if (map->map[c.i][c.j] == ch || !ch)
-				mlx_put_image_to_window(mlx.mlx, mlx.win, img.img,
-					img.dim.c * c.j, img.dim.r * c.i);
+			if (mlx.map.map[c.i][c.j] == ch || !ch)
+				draw_sprite(mlx, img, setcords((int)c.i, (int)c.j));
 			c.j++;
 		}
 		c.i++;
 	}
 }
 
-int	draw_map(t_mlxptr mlx, t_map *map)
+int	draw_map(t_mlxptr *mlx)
 {
-	map->floor = create_img(mlx, "./sprites/floorx32.xpm", 32);
-	map->wall = create_img(mlx, "./sprites/wallx32.xpm", 32);
-	map->character = create_img(mlx, "./sprites/heisenbergx32.xpm", 32);
-	map->collectible = create_img(mlx, "./sprites/crystalx32.xpm", 32);
-	draw_sprites(mlx, map->floor, map, 0);
-	draw_sprites(mlx, map->wall, map, CH_WALL);
-	draw_sprites(mlx, map->character, map, CH_PLAYER);
-	draw_sprites(mlx, map->collectible, map, CH_COLLEC);
+	mlx->i_floor = create_img(*mlx, "./sprites/floorx32.xpm", 32);
+	mlx->i_wall = create_img(*mlx, "./sprites/wallx32.xpm", 32);
+	mlx->i_character = create_img(*mlx, "./sprites/heisenbergx32.xpm", 32);
+	mlx->i_collectible = create_img(*mlx, "./sprites/crystalx32.xpm", 32);
+	mlx->i_open = create_img(*mlx, "./sprites/opendoorx32.xpm", 32);
+	mlx->i_closed = create_img(*mlx, "./sprites/closedoorx32.xpm", 32);
+	draw_sprites(*mlx, mlx->i_floor, 0);
+	draw_sprites(*mlx, mlx->i_wall, CH_WALL);
+	draw_sprites(*mlx, mlx->i_character, CH_PLAYER);
+	draw_sprites(*mlx, mlx->i_collectible, CH_COLLEC);
+	draw_sprite(*mlx, mlx->i_closed, mlx->map.exit);
 	return (1);
 }

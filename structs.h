@@ -31,10 +31,6 @@ typedef struct s_map
 	int		nbcollec;
 	t_cords	dimensions;
 	int		path;
-	t_img	floor;
-	t_img	wall;
-	t_img	character;
-	t_img	collectible;
 }	t_map;
 
 typedef struct s_mlxptr
@@ -42,6 +38,12 @@ typedef struct s_mlxptr
 	void	*mlx;
 	void	*win;
 	t_map	map;
+	t_img	i_floor;
+	t_img	i_wall;
+	t_img	i_character;
+	t_img	i_collectible;
+	t_img	i_closed;
+	t_img	i_open;
 }	t_mlxptr;
 
 #endif
