@@ -25,7 +25,7 @@
 # include "macros.h"
 # include "structs.h"
 
-// input handling
+// parsing
 t_map	read_args(t_args args);
 
 // map checking
@@ -38,17 +38,14 @@ int		print_output(char *msg);
 
 // mlx
 void	start_game(t_mlxptr	*mlx);
+int		draw_map(t_mlxptr *mlx);
+void	draw_sprite(t_mlxptr mlx, t_img img, t_cords tile);
 
 // hooks
 int		on_destroy(char *msg);
 int		on_key(int key, t_mlxptr *mlx);
 
-// utils
-t_cords	setcords(int r, int c);
-
-int		draw_map(t_mlxptr *mlx);
-
-void	draw_sprite(t_mlxptr mlx, t_img img, t_cords tile);
+// mechanics
 void	move(t_mlxptr *mlx, int direction);
 
 #endif

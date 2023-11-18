@@ -42,7 +42,7 @@ void	draw_sprites(t_mlxptr mlx, t_img img, int ch)
 		while (c.j < mlx.map.dimensions.c)
 		{
 			if (mlx.map.map[c.i][c.j] == ch || !ch)
-				draw_sprite(mlx, img, setcords((int)c.i, (int)c.j));
+				draw_sprite(mlx, img, ft_setcords((int)c.i, (int)c.j));
 			c.j++;
 		}
 		c.i++;

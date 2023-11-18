@@ -16,10 +16,10 @@ void	check_cell(t_map *map, t_cords cords);
 
 void	find_path(t_map *map, t_cords cords)
 {
-	check_cell(&(*map), setcords(cords.r - 1, cords.c));
-	check_cell(&(*map), setcords(cords.r, cords.c + 1));
-	check_cell(&(*map), setcords(cords.r + 1, cords.c));
-	check_cell(&(*map), setcords(cords.r, cords.c - 1));
+	check_cell(&(*map), ft_setcords(cords.r - 1, cords.c));
+	check_cell(&(*map), ft_setcords(cords.r, cords.c + 1));
+	check_cell(&(*map), ft_setcords(cords.r + 1, cords.c));
+	check_cell(&(*map), ft_setcords(cords.r, cords.c - 1));
 }
 
 void	check_cell(t_map *map, t_cords cords)
@@ -54,9 +54,9 @@ int	check_req(t_map *map)
 		else if (map->map[c.i][c.j] == CH_COLLEC)
 			map->nbcollec += 1;
 		else if (map->map[c.i][c.j] == CH_PLAYER && ++c.k)
-			map->player = setcords((int)c.i, (int)c.j);
+			map->player = ft_setcords((int)c.i, (int)c.j);
 		else if (map->map[c.i][c.j] == CH_EXIT && ++c.l)
-			map->exit = setcords((int)c.i, (int)c.j);
+			map->exit = ft_setcords((int)c.i, (int)c.j);
 		c.j++;
 		if (map->map[c.i][c.j] == '\n')
 		{
@@ -74,8 +74,8 @@ void	check_map(t_map *map)
 	if (!check_req(&(*map)))
 		print_error("Invalid map");
 	tmp = map->nbcollec;
-	if (map->player.c != map->dimensions.c && map->player.c != 0
-		&& map->player.r != map->dimensions.r && map->player.r != 0)
+	if (map->player.c != map->dimensions.c && map->player.c
+		&& map->player.r != map->dimensions.r && map->player.r)
 		find_path(map, map->player);
 	else
 		print_error("Invalid path");

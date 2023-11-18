@@ -66,13 +66,13 @@ void	move(t_mlxptr *mlx, int direction)
 
 	pl = mlx->map.player;
 	if (direction == 1 && mlx->map.map[pl.r - 1][pl.c] != CH_WALL)
-		dest = setcords(pl.r - 1, pl.c);
+		dest = ft_setcords(pl.r - 1, pl.c);
 	else if (direction == 2 && mlx->map.map[pl.r][pl.c - 1] != CH_WALL)
-		dest = setcords(pl.r, pl.c - 1);
+		dest = ft_setcords(pl.r, pl.c - 1);
 	else if (direction == 3 && mlx->map.map[pl.r + 1][pl.c] != CH_WALL)
-		dest = setcords(pl.r + 1, pl.c);
+		dest = ft_setcords(pl.r + 1, pl.c);
 	else if (direction == 4 && mlx->map.map[pl.r][pl.c + 1] != CH_WALL)
-		dest = setcords(pl.r, pl.c + 1);
+		dest = ft_setcords(pl.r, pl.c + 1);
 	else
 		return ;
 	edit_map(mlx, dest, pl);

@@ -12,15 +12,6 @@
 
 #include "so_long.h"
 
-t_cords	setcords(int r, int c)
-{
-	t_cords	ret;
-
-	ret.r = r;
-	ret.c = c;
-	return (ret);
-}
-
 int	main(int argc, char **argv)
 {
 	t_mlxptr	mlx;
