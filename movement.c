@@ -55,8 +55,20 @@ void	edit_map(t_mlxptr *mlx, t_cords dest, t_cords player)
 	}
 	mlx->map.player = dest;
 	if (!mlx->map.nbcollec && dest.c == mlx->map.exit.c
-		&& player.r == mlx->map.exit.r)
-		on_destroy("YOU WON!");
+		&& dest.r == mlx->map.exit.r)
+		output_exit("YOU WON!");
+}
+
+void	draw_changes(t_mlxptr *mlx, t_cords dest, t_cords player)
+{
+	draw_sprite(*mlx, mlx->i_floor, player);
+	draw_sprite(*mlx, mlx->i_floor, dest);
+	if (!mlx->map.nbcollec)
+		draw_sprite(*mlx, mlx->i_open, mlx->map.exit);
+	else if ((dest.r == mlx->map.exit.r && dest.c == mlx->map.exit.c)
+		|| (player.r == mlx->map.exit.r && player.c == mlx->map.exit.c))
+		draw_sprite(*mlx, mlx->i_closed, mlx->map.exit);
+	draw_sprite(*mlx, mlx->i_character, dest);
 }
 
 void	move(t_mlxptr *mlx, int direction)
@@ -76,5 +88,5 @@ void	move(t_mlxptr *mlx, int direction)
 	else
 		return ;
 	edit_map(mlx, dest, pl);
-	draw_map(mlx);
+	draw_changes(mlx, dest, pl);
 }

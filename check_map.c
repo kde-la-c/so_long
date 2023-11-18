@@ -16,10 +16,10 @@ void	check_cell(t_map *map, t_cords cords);
 
 void	find_path(t_map *map, t_cords cords)
 {
-	check_cell(&(*map), ft_setcords(cords.r - 1, cords.c));
-	check_cell(&(*map), ft_setcords(cords.r, cords.c + 1));
-	check_cell(&(*map), ft_setcords(cords.r + 1, cords.c));
-	check_cell(&(*map), ft_setcords(cords.r, cords.c - 1));
+	check_cell(map, ft_setcords(cords.r - 1, cords.c));
+	check_cell(map, ft_setcords(cords.r, cords.c + 1));
+	check_cell(map, ft_setcords(cords.r + 1, cords.c));
+	check_cell(map, ft_setcords(cords.r, cords.c - 1));
 }
 
 void	check_cell(t_map *map, t_cords cords)
@@ -27,7 +27,7 @@ void	check_cell(t_map *map, t_cords cords)
 	if (map->tmpmap[cords.r][cords.c] != CH_WALL
 		&& (cords.r == 0 || cords.r == map->dimensions.r
 			|| cords.c == 0 || cords.c == map->dimensions.c))
-		print_error("Invalid path");
+		error_exit("Error\nInvalid path");
 	else if (map->tmpmap[cords.r][cords.c] == CH_WALL
 		|| map->tmpmap[cords.r][cords.c] == CH_PLAYER)
 		return ;
@@ -71,15 +71,15 @@ void	check_map(t_map *map)
 {
 	int	tmp;
 
-	if (!check_req(&(*map)))
-		print_error("Invalid map");
+	if (!check_req(map))
+		error_exit("Error\nInvalid map");
 	tmp = map->nbcollec;
 	if (map->player.c != map->dimensions.c && map->player.c
 		&& map->player.r != map->dimensions.r && map->player.r)
 		find_path(map, map->player);
 	else
-		print_error("Invalid path");
+		error_exit("Error\nInvalid path");
 	if (!map->path || map->nbcollec)
-		print_error("Invalid path");
+		error_exit("Error\nInvalid path");
 	map->nbcollec = tmp;
 }

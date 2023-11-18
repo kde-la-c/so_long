@@ -32,9 +32,9 @@ t_map	read_args(t_args args);
 void	check_map(t_map *map);
 
 // output handling
-int		print_error(char *err);
+int		error_exit(char *err);
 int		perror_exit(char *err);
-int		print_output(char *msg);
+int		output_exit(char *msg);
 
 // mlx
 void	start_game(t_mlxptr	*mlx);
@@ -42,7 +42,7 @@ int		draw_map(t_mlxptr *mlx);
 void	draw_sprite(t_mlxptr mlx, t_img img, t_cords tile);
 
 // hooks
-int		on_destroy(char *msg);
+int		on_destroy(void);
 int		on_key(int key, t_mlxptr *mlx);
 
 // mechanics

@@ -12,9 +12,9 @@
 
 #include "so_long.h"
 
-int	on_destroy(char *msg)
+int	on_destroy(void)
 {
-	print_output(msg);
+	output_exit("window closed");
 	return (0);
 }
 
@@ -23,7 +23,7 @@ int	on_key(int key, t_mlxptr *mlx)
 	static int	moves = 0;
 
 	if (key == KEY_ESC)
-		on_destroy("window closed");
+		on_destroy();
 	else if ((key == KEY_UP || key == KEY_W) && ++moves)
 		move(mlx, 1);
 	else if ((key == KEY_LEFT || key == KEY_A) && ++moves)

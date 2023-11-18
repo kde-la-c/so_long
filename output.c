@@ -12,7 +12,7 @@
 
 #include "so_long.h"
 
-int	print_error(char *err)
+int	error_exit(char *err)
 {
 	write(2, &err[0], ft_strlen(err));
 	write(2, "\n", 1);
@@ -25,9 +25,9 @@ int	perror_exit(char *err)
 	exit(1);
 }
 
-int	print_output(char *msg)
+int	output_exit(char *msg)
 {
-	write(2, &msg[0], ft_strlen(msg));
-	write(2, "\n", 1);
+	write(1, &msg[0], ft_strlen(msg));
+	write(1, "\n", 1);
 	exit(0);
 }
