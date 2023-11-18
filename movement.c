@@ -65,7 +65,6 @@ void	move(t_mlxptr *mlx, int direction)
 	t_cords	pl;
 
 	pl = mlx->map.player;
-	// printf("map.pl :%i %i\n", mlx->map.player.r, mlx->map.player.c);
 	if (direction == 1 && mlx->map.map[pl.r - 1][pl.c] != CH_WALL)
 		dest = setcords(pl.r - 1, pl.c);
 	else if (direction == 2 && mlx->map.map[pl.r][pl.c - 1] != CH_WALL)
