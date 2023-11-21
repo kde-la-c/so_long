@@ -64,7 +64,8 @@ int	check_req(t_map *map)
 			c.j = 0;
 		}
 	}
-	return ((c.k == 1 && c.l == 1 && map->nbcollec));
+	return ((c.k == 1 && c.l == 1 && map->nbcollec
+		&& map->dimensions.r <= 40 && map->dimensions.c <= 80));
 }
 
 int	check_borders(t_map map)
