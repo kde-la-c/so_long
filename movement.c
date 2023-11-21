@@ -73,8 +73,9 @@ void	draw_changes(t_mlxptr *mlx, t_cords dest, t_cords player)
 
 void	move(t_mlxptr *mlx, int direction)
 {
-	t_cords	dest;
-	t_cords	pl;
+	static int	nbmoves = 0;
+	t_cords		dest;
+	t_cords		pl;
 
 	pl = mlx->map.player;
 	if (direction == 1 && mlx->map.map[pl.r - 1][pl.c] != CH_WALL)
@@ -87,6 +88,7 @@ void	move(t_mlxptr *mlx, int direction)
 		dest = ft_setcords(pl.r, pl.c + 1);
 	else
 		return ;
+	ft_printf("%i moves\n", ++nbmoves);
 	edit_map(mlx, dest, pl);
 	draw_changes(mlx, dest, pl);
 }

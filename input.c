@@ -33,7 +33,7 @@ char	**parse_map(char *path, t_cords *dimensions)
 		map[++c.j] = get_next_line(c.i);
 	if (dimensions)
 	{
-		dimensions->r = c.j;
+		dimensions->r = (int)c.j;
 		dimensions->c = (int)ft_strlen(map[0]) - 1;
 	}
 	return (map);

@@ -67,11 +67,36 @@ int	check_req(t_map *map)
 	return ((c.k == 1 && c.l == 1 && map->nbcollec));
 }
 
+int	check_borders(t_map map)
+{
+	t_count	c;
+
+	printf("%i %i\n", map.dimensions.c, map.dimensions.r);
+	ft_bzero((void *)&c, sizeof(t_count));
+	c.j = map.dimensions.c - 1;
+	while (map.map[0][c.i] && map.map[c.j][c.i])
+	{
+		printf("1>%i %i\n", map.map[0][c.i], map.map[c.j][c.i]);
+		if (!(map.map[0][c.i] != CH_WALL && map.map[c.j][c.i] != CH_WALL))
+			return (0);
+		c.i++;
+	}
+	c.l = map.dimensions.r - 1;
+	while (map.map[c.k][0] && map.map[c.l][c.k])
+	{
+		printf("2>%i %i\n", map.map[c.k][0], map.map[c.l][c.k]);
+		if (!(map.map[0][c.k] != CH_WALL && map.map[c.l][c.k] != CH_WALL))
+			return (0);
+		c.i++;
+	}
+	return (1);
+}
+
 void	check_map(t_map *map)
 {
 	int	tmp;
 
-	if (!check_req(map))
+	if (!(check_req(map) && check_borders(*map)))
 		error_exit("Error\nInvalid map");
 	tmp = map->nbcollec;
 	if (map->player.c != map->dimensions.c && map->player.c
