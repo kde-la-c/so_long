@@ -36,7 +36,7 @@ void	check_cell(t_map *map, t_cords cords)
 	if (map->tmpmap[cords.r][cords.c] == CH_EXIT)
 		map->path = 1;
 	map->tmpmap[cords.r][cords.c] = CH_PLAYER;
-	find_path(&(*map), cords);
+	find_path(map, cords);
 }
 
 int	check_req(t_map *map)
@@ -98,11 +98,7 @@ void	check_map(t_map *map)
 	if (!check_req(map) || !check_borders(*map))
 		error_exit("Error\nInvalid map");
 	tmp = map->nbcollec;
-	if (map->player.c != map->dimensions.c && map->player.c
-		&& map->player.r != map->dimensions.r && map->player.r)
-		find_path(map, map->player);
-	else
-		error_exit("Error\nInvalid path");
+	find_path(map, map->player);
 	if (!map->path || map->nbcollec)
 		error_exit("Error\nInvalid path");
 	map->nbcollec = tmp;

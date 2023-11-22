@@ -12,30 +12,6 @@
 
 #include "so_long.h"
 
-void	find_char(t_map map, char ch, t_cords *ret)
-{
-	t_count	c;
-
-	ft_bzero((void *)&c, sizeof(t_count));
-	while (map.map[c.i])
-	{
-		c.j = 0;
-		while (map.map[c.i][c.j])
-		{
-			if (map.map[c.i][c.j] == ch)
-			{
-				ret->r = c.i;
-				ret->c = c.j;
-				break ;
-			}
-			c.j++;
-		}
-		c.i++;
-	}
-	if (!map.map[c.i])
-		ret = NULL;
-}
-
 void	edit_map(t_mlxptr *mlx, t_cords dest, t_cords player)
 {
 	if (mlx->map.map[dest.r][dest.c] == CH_COLLEC)

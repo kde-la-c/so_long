@@ -31,7 +31,7 @@ char	**parse_map(char *path, t_cords *dimensions)
 	map[c.j] = get_next_line(c.i);
 	while (map[c.j])
 		map[++c.j] = get_next_line(c.i);
-	if (dimensions)
+	if (dimensions && c.j)
 	{
 		dimensions->r = (int)c.j;
 		dimensions->c = (int)ft_strlen(map[0]) - 1;
@@ -45,10 +45,10 @@ t_map	read_args(t_args args)
 	t_map	map;
 
 	if (args.argc != 2)
-		error_exit("Invalid number of arguments");
+		error_exit("Error\nInvalid number of arguments");
 	path = args.argv[1];
 	if (ft_strncmp(&path[ft_strlen(path) - 4], ".ber", 5))
-		error_exit("Invalid map name");
+		error_exit("Error\nInvalid map name");
 	ft_bzero((void *)&map, sizeof(t_map));
 	map.map = parse_map(path, &map.dimensions);
 	map.tmpmap = parse_map(path, NULL);
