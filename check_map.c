@@ -93,8 +93,15 @@ int	check_borders(t_map map)
 
 void	check_map(t_map *map)
 {
+	int	i;
 	int	tmp;
 
+	i = 0;
+	while (map->map[i])
+		i++;
+	map->dimensions.r = i;
+	if (i)
+		map->dimensions.c = ft_strlen(map->map[0]);
 	if (!check_req(map) || !check_borders(*map))
 		error_exit("Error\nInvalid map");
 	tmp = map->nbcollec;

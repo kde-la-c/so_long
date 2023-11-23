@@ -45,6 +45,8 @@ all:		$(NAME)
 
 $(NAME):	$(OBJS) $(INCLUDE) $(LIBNAME)
 			$(CC) $(CFLAGS) $(OBJS) $(MLFLAGS) -o $(NAME) $(LIBNAME)
+	$(RM) $(RFLAGS) $(OBJS)
+	@echo "\033[0;31m--- RELINK ---\033[0m"
 			@echo "\033[0;32m--- $(NAME) compiled successfully! ---\033[0m"
 
 l:			$(OBJS) $(INCLUDE) $(LIBNAME)
