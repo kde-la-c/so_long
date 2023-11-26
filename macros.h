@@ -13,7 +13,7 @@
 #ifndef MACROS_H
 # define MACROS_H
 
-# define CH_SET		"01CEP\n"
+# define CH_SET		"01CEP"
 # define CH_WALL	'1'
 # define CH_SPACE	'0'
 # define CH_PLAYER	'P'
