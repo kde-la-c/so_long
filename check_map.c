@@ -12,9 +12,9 @@
 
 #include "so_long.h"
 
-void	check_cell(t_map *map, t_cords cords);
+static void	check_cell(t_map *map, t_cords cords);
 
-void	find_path(t_map *map, t_cords cords)
+static void	find_path(t_map *map, t_cords cords)
 {
 	check_cell(map, ft_setcords(cords.r - 1, cords.c));
 	check_cell(map, ft_setcords(cords.r, cords.c + 1));
@@ -22,7 +22,7 @@ void	find_path(t_map *map, t_cords cords)
 	check_cell(map, ft_setcords(cords.r, cords.c - 1));
 }
 
-void	check_cell(t_map *map, t_cords cords)
+static void	check_cell(t_map *map, t_cords cords)
 {
 	if (map->tmpmap[cords.r][cords.c] != CH_WALL
 		&& (cords.r == 0 || cords.r == map->dimensions.r
@@ -39,15 +39,14 @@ void	check_cell(t_map *map, t_cords cords)
 	find_path(map, cords);
 }
 
-int	check_req(t_map *map)
+static int	check_req(t_map *map)
 {
 	t_count	c;
 
 	ft_bzero((void *)&c, sizeof(t_count));
 	while (map->map[c.i] && map->map[c.i][c.j])
 	{
-		if (!c.j && (map->dimensions.c + 1)
-			!= (int)ft_strlen(map->map[c.i]) + (c.i + 1 == map->dimensions.r))
+		if (!c.j && map->dimensions.c != (int)ft_strlen(map->map[c.i]))
 			return (0);
 		else if (!ft_strchr(CH_SET, map->map[c.i][c.j]))
 			return (0);
@@ -58,17 +57,17 @@ int	check_req(t_map *map)
 		else if (map->map[c.i][c.j] == CH_EXIT && ++c.l)
 			map->exit = ft_setcords((int)c.i, (int)c.j);
 		c.j++;
-		if (map->map[c.i][c.j] == '\n')
+		if (!map->map[c.i][c.j])
 		{
 			c.i++;
 			c.j = 0;
 		}
 	}
 	return ((c.k == 1 && c.l == 1 && map->nbcollec
-		&& map->dimensions.r <= 40 && map->dimensions.c <= 80));
+			&& map->dimensions.r <= 40 && map->dimensions.c <= 80));
 }
 
-int	check_borders(t_map map)
+static int	check_borders(t_map map)
 {
 	t_count	c;
 
@@ -93,8 +92,16 @@ int	check_borders(t_map map)
 
 void	check_map(t_map *map)
 {
+	int	i;
 	int	tmp;
 
+	i = 0;
+	while (map->map[i])
+		i++;
+	map->dimensions.r = i;
+	map->dimensions.c = ft_strlen(map->map[0]);
+	if (i)
+		map->dimensions.c = ft_strlen(map->map[0]);
 	if (!check_req(map) || !check_borders(*map))
 		error_exit("Error\nInvalid map");
 	tmp = map->nbcollec;

@@ -12,7 +12,7 @@
 
 #include "so_long.h"
 
-t_img	create_img(t_mlxptr mlx, char *path, int dim)
+static t_img	create_img(t_mlxptr mlx, char *path, int dim)
 {
 	t_img	ret;
 
@@ -31,7 +31,7 @@ void	draw_sprite(t_mlxptr mlx, t_img img, t_cords tile)
 		img.dim.c * tile.c, img.dim.r * tile.r);
 }
 
-void	draw_sprites(t_mlxptr mlx, t_img img, int ch)
+static void	draw_sprites(t_mlxptr mlx, t_img img, int ch)
 {
 	t_count	c;
 
