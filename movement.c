@@ -12,7 +12,7 @@
 
 #include "so_long.h"
 
-void	edit_map(t_mlxptr *mlx, t_cords dest, t_cords player)
+static void	edit_map(t_mlxptr *mlx, t_cords dest, t_cords player)
 {
 	if (mlx->map.map[dest.r][dest.c] == CH_COLLEC)
 	{
@@ -35,7 +35,7 @@ void	edit_map(t_mlxptr *mlx, t_cords dest, t_cords player)
 		output_exit("YOU WON!");
 }
 
-void	draw_changes(t_mlxptr *mlx, t_cords dest, t_cords player)
+static void	draw_changes(t_mlxptr *mlx, t_cords dest, t_cords player)
 {
 	draw_sprite(*mlx, mlx->i_floor, player);
 	draw_sprite(*mlx, mlx->i_floor, dest);

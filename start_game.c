@@ -12,7 +12,7 @@
 
 #include "so_long.h"
 
-void	create_mlx(t_map map, t_mlxptr *ret, t_count *c)
+static void	create_mlx(t_map map, t_mlxptr *ret, t_count *c)
 {
 	c->i = map.dimensions.c * 32;
 	c->j = map.dimensions.r * 32;

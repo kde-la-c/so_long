@@ -12,52 +12,33 @@
 
 #include "so_long.h"
 
-/* char	**parse_map(char *path, t_cords *dimensions)
+static void	parse_map(char *path, char ***map)
 {
-	t_count	c;
-	char	**map;
-
-	c.j = 0;
-	c.i = open(path, O_RDONLY);
-	if (c.i == -1)
-		error_exit("Error\nCouldn't open map");
-	map = (char **)ft_calloc(ft_countlines(c.i) + 1, sizeof(char *));
-	if (!map)
-		error_exit("Memory allocation error");
-	close(c.i);
-	c.i = open(path, O_RDONLY);
-	if (c.i == -1)
-		error_exit("Error\nCouldn't open map");
-	map[c.j] = get_next_line(c.i);
-	while (map[c.j])
-		map[++c.j] = get_next_line(c.i);
-	if (dimensions && c.j)
-	{
-		dimensions->r = (int)c.j;
-		dimensions->c = (int)ft_strlen(map[0]) - 1;
-	}
-	return (map);
-} */
-
-char	**parse_map(char *path)
-{
-	t_count	c;
+	int		i;
 	char	*str;
 	char	*line;
-	char	**map;
 
-	c.i = open(path, O_RDONLY);
-	line = get_next_line(c.i);
-	str = ft_strdup(line);
+	i = open(path, O_RDONLY);
+	if (i == -1)
+		perror_exit("Error\nCouldn't open map");
+	str = NULL;
+	line = get_next_line(i);
+	if (!line)
+		error_exit("Error\nInvalid map");
 	while (line)
 	{
-		str = ft_strjoin_f1(str, line);
-		line = get_next_line(c.i);
+		if (!str)
+			str = ft_strjoin_f2("", line);
+		else
+			str = ft_strjoin_f12(str, line);
+		line = get_next_line(i);
 	}
-	map = ft_split(str, '\n');
-	if (!map)
+	*map = ft_split(str, '\n');
+	if (!*map)
 		error_exit("Memory allocation error");
-	return (map);
+	free(str);
+	free(line);
+	close(i);
 }
 
 t_map	read_args(t_args args)
@@ -71,7 +52,7 @@ t_map	read_args(t_args args)
 	if (ft_strncmp(&path[ft_strlen(path) - 4], ".ber", 5))
 		error_exit("Error\nInvalid map name");
 	ft_bzero((void *)&map, sizeof(t_map));
-	map.map = parse_map(path);
-	map.tmpmap = parse_map(path);
+	parse_map(path, &map.map);
+	parse_map(path, &map.tmpmap);
 	return (map);
 }
