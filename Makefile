@@ -38,7 +38,7 @@ ifeq ($(UNAME), Darwin)
   MLFLAGS := -lmlx -framework OpenGL -framework AppKit
 endif
 ifeq ($(UNAME), Linux)
-  MLFLAGS := -lm -lbsd -lmlx -lXext -lX11
+  MLFLAGS := -L./mlx -lmlx -lXext -lX11 -lm
 endif
 
 all:		$(NAME)

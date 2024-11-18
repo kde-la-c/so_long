@@ -14,13 +14,13 @@
 # define SO_LONG_H
 
 # include <stdarg.h>
-# include <mlx.h>
 # include <math.h>
 # include <string.h>
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
 
+# include "mlx/mlx.h"
 # include "libft/libft.h"
 # include "macros.h"
 # include "structs.h"
