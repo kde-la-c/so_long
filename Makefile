@@ -24,7 +24,7 @@ OBJS		= $(SRC:%.c=%.o)
 INCLUDE		= so_long.h\
 			macros.h\
 			structs.h
-CC			= gcc
+CC			= cc
 CFLAGS		= -Wall -Wextra -Werror
 RM			= rm
 RFLAGS		= -rf
